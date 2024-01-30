@@ -13,12 +13,11 @@ type LinkList struct {
 	Length int
 }
 
-func (ll *LinkList) GetLength() int {
-	return ll.Length
-}
-
-func (ll *LinkList) increaseLength() {
+func (ll *LinkList) IncreaseLength() {
 	ll.Length++
+}
+func (ll *LinkList) DecreaseLength() {
+	ll.Length--
 }
 
 func Loop(head *Node) {
@@ -31,7 +30,21 @@ func Loop(head *Node) {
 	}
 }
 
+func (ll *LinkList) RemoveFromQueue() *LinkList {
+	if ll.Length == 0 {
+		fmt.Println("Nothing to remove")
+		return ll
+	}
+	fmt.Println("Old Head:- ", ll.Head)
+	newHead := ll.Head.Next
+	ll.Head.Next = nil
+	ll.Head = newHead
+	fmt.Println("New Head:- ", ll.Head)
 
+
+	ll.DecreaseLength()
+	return ll
+}
 
 func (ll *LinkList) AddNewNodeAtLast(value interface{}) *LinkList {
 	current := &Node{value, nil}
@@ -43,7 +56,7 @@ func (ll *LinkList) AddNewNodeAtLast(value interface{}) *LinkList {
 	ll.Tail.Next = current
 	ll.Tail = current
 
-	ll.increaseLength()
+	ll.IncreaseLength()
 
 	return ll
 }
@@ -54,5 +67,9 @@ func Queue() {
 	list = list.AddNewNodeAtLast(2)
 	list = list.AddNewNodeAtLast(3)
 	Loop(list.Head)
-	fmt.Println(list.GetLength())
+	fmt.Println("Length After Adding:- ",list.Length, "\n Start Deletion")
+	list = list.RemoveFromQueue()
+	list = list.RemoveFromQueue()
+	Loop(list.Head)
+	fmt.Println("Length After deleting:- ",list.Length)
 }
