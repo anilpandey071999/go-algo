@@ -35,11 +35,15 @@ func (ll *LinkList) RemoveFromQueue() *LinkList {
 		fmt.Println("Nothing to remove")
 		return ll
 	}
+	if ll.Length == 1 {
+		ll.Tail = nil
+	}
 	fmt.Println("Old Head:- ", ll.Head)
 	newHead := ll.Head.Next
 	ll.Head.Next = nil
 	ll.Head = newHead
 	fmt.Println("New Head:- ", ll.Head)
+
 
 
 	ll.DecreaseLength()
@@ -68,6 +72,8 @@ func Queue() {
 	list = list.AddNewNodeAtLast(3)
 	Loop(list.Head)
 	fmt.Println("Length After Adding:- ",list.Length, "\n Start Deletion")
+	list = list.RemoveFromQueue()
+	list = list.RemoveFromQueue()
 	list = list.RemoveFromQueue()
 	list = list.RemoveFromQueue()
 	Loop(list.Head)

@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/anilpandey071999/go-algo/algorithms"
 )
 
-func main(){
-	algorithms.Queue()
+func main() {
 	fmt.Println("Welcome to ALGO in GOLANG")
 }
