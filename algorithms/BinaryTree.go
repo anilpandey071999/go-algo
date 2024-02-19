@@ -1,11 +1,29 @@
 package algorithms
 
+import "fmt"
+
 type BinaryTreeNode struct {
 	Value    int
 	Left     *BinaryTreeNode
 	Right    *BinaryTreeNode
 	Parent   *BinaryTreeNode
 	LeafNode bool
+}
+
+func GetLeafNode(node *BinaryTreeNode, childNodes []*BinaryTreeNode) []*BinaryTreeNode {
+	// childNodes := []*BinaryTreeNode{}
+	println(node, "Node Value: ", node.Value, "Left Node", node.Left, "Right node: ", node.Right, "Parent Node: ", node.Parent)
+	if node.Left == nil && node.Right == nil {
+		childNodes = append(childNodes, node)
+		return childNodes
+	}
+	if node.Left != nil {
+		childNodes = GetLeafNode(node.Left, childNodes)
+	}
+	if node.Right != nil {
+		childNodes = GetLeafNode(node.Right, childNodes)
+	}
+	return childNodes
 }
 
 func GetNodeByValue(node *BinaryTreeNode, value int) *BinaryTreeNode {
@@ -57,4 +75,6 @@ func BinaryTree() {
 	AddChild(FirstNode, 13)
 	AddChild(FirstNode, 23)
 	AddChild(FirstNode, 30)
+	data := GetLeafNode(FirstNode, []*BinaryTreeNode{})
+	fmt.Println(data)
 }
