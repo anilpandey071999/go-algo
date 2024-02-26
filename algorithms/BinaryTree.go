@@ -58,7 +58,7 @@ func AddChild(node *BinaryTreeNode, value int) {
 	println("Successfull Add : ", value)
 }
 
-func BinaryTree() {
+func BinaryTree() *BinaryTreeNode {
 	/**
 	 * TODO
 	 * 		? AddChild Node function
@@ -77,4 +77,5 @@ func BinaryTree() {
 	AddChild(FirstNode, 30)
 	data := GetLeafNode(FirstNode, []*BinaryTreeNode{})
 	fmt.Println(data)
+	return FirstNode
 }
